@@ -1,4 +1,7 @@
-function Section({ title, inputFields, unique, handleInputData }) {
+function Section(props) {
+  const { title, inputFields, unique, handleInputData, deleteSection, number } =
+    props;
+  
   function buildInputs(field) {
     if (field === 'Photo') {
       return (
@@ -11,6 +14,7 @@ function Section({ title, inputFields, unique, handleInputData }) {
             // style={{ display: 'none' }}
             id='photo-input'
             placeholder='photo'
+            data-number={number}
           />
         </div>
       );
@@ -21,6 +25,7 @@ function Section({ title, inputFields, unique, handleInputData }) {
           placeholder={field}
           onChange={handleInputData}
           className={`${title} input`}
+          data-number={number}
         />
       );
     }
@@ -30,7 +35,10 @@ function Section({ title, inputFields, unique, handleInputData }) {
     return (
       <>
         <button
-          className={`${title.toLowerCase()}-delete`}>
+          className={`${title.toLowerCase()}-delete`}
+          onClick={deleteSection}
+          data-number={number}
+        >
           Delete
         </button>
       </>

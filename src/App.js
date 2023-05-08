@@ -1,7 +1,8 @@
 import React from 'react';
-import Section from './components/Section';
 import Cv from './components/Cv';
-import parseInputToValidVariableName from './utils';
+import ExperienceSections from './components/ExperienceSections';
+import PersonalInfoSection from './components/PersonalInfoSection';
+import EducationSections from './components/EducationSections';
 
 function App() {
   const cvInfo = {
@@ -12,66 +13,17 @@ function App() {
 
   const [inputData, setInputData] = React.useState(cvInfo);
 
-  function handleInputData(event) {
-    const inputSectionClass = parseInputToValidVariableName(
-      event.target.className
-    );
-    const inputSubSection = parseInputToValidVariableName(
-      event.target.placeholder
-    );
-
-    const input = event.target.value;
-    const cvInfoCopy = { ...inputData };
-    const subSection = inputSubSection;
-
-    if (inputSectionClass.includes('personal')) {
-      cvInfoCopy.personalInfo[subSection] = input;
-    } else if (inputSectionClass.includes('experience')) {
-      cvInfoCopy.experience[subSection] = input;
-    } else if (inputSectionClass.includes('education')) {
-      cvInfoCopy.education[subSection] = input;
-    }
-
-    setInputData(cvInfoCopy);
+  function updateCvInfo(data) {
+    console.log(data)
   }
-
 
   return (
     <div className='App'>
       <div className='title'>CV CREATOR</div>
       <div className='sections-body'>
-        <Section
-          title='Personal Information'
-          unique={true}
-          handleInputData={handleInputData}
-          inputFields={[
-            'First name',
-            'Last name',
-            'Title',
-            'Photo',
-            'Address',
-            'Phone number',
-            'Email',
-            'Description',
-          ]}
-        />
-        <Section
-          title='Experience'
-          handleInputData={handleInputData}
-          inputFields={['Position', 'Company', 'City', 'From', 'To']}
-        />
-        <Section
-          title='Education'
-          handleInputData={handleInputData}
-          inputFields={[
-            'University name',
-            'City',
-            'Degree',
-            'Subject',
-            'From',
-            'To',
-          ]}
-        />
+        <PersonalInfoSection updateCvInfo={updateCvInfo} />
+        <ExperienceSections updateCvInfo={updateCvInfo} />
+        <EducationSections updateCvInfo={updateCvInfo} />
       </div>
       <Cv userInput={inputData} />
     </div>

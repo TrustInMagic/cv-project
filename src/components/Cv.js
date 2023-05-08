@@ -25,7 +25,6 @@ function Cv({ userInput }) {
     toEdu,
   } = userInput.education;
 
-
   return (
     <div className='cv'>
       <div className='header'>
