@@ -17,7 +17,7 @@ function EducationSections({ updateCvInfo }) {
 
   function deleteSection(event) {
     const sectionToRemove = event.target.getAttribute('data-number');
-    const indexToRemove = sections.indexOf(sectionToRemove);
+    const indexToRemove = sections.indexOf(Number(sectionToRemove));
     const sectionsCopy = [...sections];
     sectionsCopy.splice(indexToRemove, 1);
     setSections(sectionsCopy);
