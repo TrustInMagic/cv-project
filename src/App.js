@@ -1,6 +1,7 @@
 import React from 'react';
 import Section from './components/Section';
 import Cv from './components/Cv';
+import parseInputToValidVariableName from './utils';
 
 function App() {
   const cvInfo = {
@@ -8,7 +9,7 @@ function App() {
     experience: {},
     education: {},
   };
-  
+
   const [inputData, setInputData] = React.useState(cvInfo);
 
   function handleInputData(event) {
@@ -34,20 +35,6 @@ function App() {
     setInputData(cvInfoCopy);
   }
 
-  function parseInputToValidVariableName(input) {
-    const lowerCase = input.toLowerCase();
-    const arrFromString = [...lowerCase];
-
-    for (let i = 0; i < arrFromString.length; i++) {
-      if (arrFromString[i] === ' ') {
-        arrFromString[i + 1] = arrFromString[i + 1].toUpperCase();
-        arrFromString.splice(i, 1);
-      }
-    }
-
-    const validName = arrFromString.join('');
-    return validName;
-  }
 
   return (
     <div className='App'>
@@ -56,7 +43,7 @@ function App() {
         <Section
           title='Personal Information'
           unique={true}
-          handleChange={handleInputData}
+          handleInputData={handleInputData}
           inputFields={[
             'First name',
             'Last name',
@@ -70,12 +57,12 @@ function App() {
         />
         <Section
           title='Experience'
-          handleChange={handleInputData}
+          handleInputData={handleInputData}
           inputFields={['Position', 'Company', 'City', 'From', 'To']}
         />
         <Section
           title='Education'
-          handleChange={handleInputData}
+          handleInputData={handleInputData}
           inputFields={[
             'University name',
             'City',

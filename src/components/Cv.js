@@ -3,6 +3,7 @@ function Cv({ userInput }) {
     firstName,
     lastName,
     title,
+    photo,
     address,
     phoneNumber,
     email,
@@ -28,8 +29,10 @@ function Cv({ userInput }) {
   return (
     <div className='cv'>
       <div className='header'>
-        <div className='name'></div>
-        <div className='title'></div>
+        <div className='name'>
+          {firstName} {lastName}
+        </div>
+        <div className='title'>{title}</div>
       </div>
       <div className='body'>
         <div className='details'>

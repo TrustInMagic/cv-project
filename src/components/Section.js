@@ -1,31 +1,38 @@
-function Section({ title, inputFields, unique, handleChange }) {
+function Section({ title, inputFields, unique, handleInputData }) {
   function buildInputs(field) {
     if (field === 'Photo') {
       return (
-        <input
-          key={field}
-          type='file'
-          accept='image/jpeg, image/png, image/jpg'
-          onChange={handleChange}
-        />
+        <div className='photo-input-container' key={field}>
+          <label htmlFor='photo-input'>Add Photo</label>
+          <input
+            type='file'
+            accept='image/jpeg, image/png, image/jpg'
+            onChange={handleInputData}
+            // style={{ display: 'none' }}
+            id='photo-input'
+            placeholder='photo'
+          />
+        </div>
       );
     } else {
       return (
         <input
           key={field}
           placeholder={field}
-          onChange={handleChange}
+          onChange={handleInputData}
           className={`${title} input`}
         />
       );
     }
   }
 
-  function addButtons() {
+  function addButtons(title) {
     return (
       <>
-        <button>Delete</button>
-        <button>Add</button>
+        <button
+          className={`${title.toLowerCase()}-delete`}>
+          Delete
+        </button>
       </>
     );
   }
@@ -36,7 +43,7 @@ function Section({ title, inputFields, unique, handleChange }) {
       <div className='field-container'>
         {inputFields && inputFields.map((field) => buildInputs(field))}
       </div>
-      <div className='buttons'>{!unique ? addButtons() : null}</div>
+      <div className='buttons'>{!unique ? addButtons(title) : null}</div>
     </>
   );
 }
