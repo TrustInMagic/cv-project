@@ -2,8 +2,9 @@ import Section from './Section';
 import { handleInputData } from '../utils';
 import React from 'react';
 
-function EducationSections({ updateCvInfo }) {
+function EducationSections({ updateCvInfo, removeDeletedSectionsData }) {
   const education = {};
+  const title = 'education';
 
   const [sections, setSections] = React.useState([1]);
   const [inputData, setInputData] = React.useState(education);
@@ -21,9 +22,11 @@ function EducationSections({ updateCvInfo }) {
     const sectionsCopy = [...sections];
     sectionsCopy.splice(indexToRemove, 1);
     setSections(sectionsCopy);
+    // remove input data from App component
+    removeDeletedSectionsData(sectionToRemove, title);
   }
 
-  React.useEffect(() => updateCvInfo({ section: 'education', ...inputData }));
+  React.useEffect(() => updateCvInfo(inputData), [inputData, sections]);
 
   return (
     <div className=''>

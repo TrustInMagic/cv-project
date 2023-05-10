@@ -9,40 +9,35 @@ function Cv({ userInput }) {
     email,
     description,
   } = userInput.personalInfo;
-  const {
-    position,
-    company,
-    city: cityExp,
-    from: fromExp,
-    to: toExp,
-  } = userInput.experience;
-  const {
-    universityName,
-    city: cityEdu,
-    degree,
-    subject,
-    fromEdu,
-    toEdu,
-  } = userInput.education;
+
+  const experienceSections = [];
+  const educationSections = [];
+
+  for (let key in userInput.experience) {
+    experienceSections.push(userInput.experience[key]);
+  }
+  for (let key in userInput.education) {
+    educationSections.push(userInput.education[key]);
+  }
 
   return (
     <div className='cv'>
       <div className='header'>
-        <div className='name'>
+        <h1>
           {firstName} {lastName}
-        </div>
-        <div className='title'>{title}</div>
+        </h1>
+        <h2>{title}</h2>
       </div>
       <div className='body'>
-        <div className='details'>
-          <div className='section'>Description</div>
-          <div className='section'>Experience</div>
-          <div className='section'>Education</div>
+        <div className='main-area'>
+          <h3>Description</h3>
+          <div className='description'>{description}</div>
+          <h3>Experience</h3>
+          <div className='experience'></div>
+          <h3>Education</h3>
+          <div className='education'></div>
         </div>
-        <div className='personal-details'>
-          <img src={''} alt='You'></img>
-          <div className='section'>Personal Details</div>
-        </div>
+        <div className='personal'></div>
       </div>
     </div>
   );

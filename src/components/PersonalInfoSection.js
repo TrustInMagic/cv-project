@@ -2,12 +2,15 @@ import Section from './Section';
 import { handleInputData } from '../utils';
 import React from 'react';
 
-function PersonalInfoSection({ updateCvInfo}) {
-  const personalInfo = {}
+function PersonalInfoSection({ updateCvInfo }) {
+  const personalInfo = {};
 
-  const [inputData, setInputData] = React.useState(personalInfo)
+  const [inputData, setInputData] = React.useState(personalInfo);
 
-  React.useEffect(() => updateCvInfo({ section: 'personal-info', ...inputData }));
+  React.useEffect(
+    () => updateCvInfo(inputData),
+    [inputData]
+  );
 
   return (
     <Section

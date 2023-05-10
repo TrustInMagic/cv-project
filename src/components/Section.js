@@ -47,7 +47,6 @@ function Section(props) {
 
   return (
     <>
-      <div className='name'>{title}</div>
       <div className='field-container'>
         {inputFields && inputFields.map((field) => buildInputs(field))}
       </div>

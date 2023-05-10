@@ -29,7 +29,7 @@ function handleInputData(event, state, setState) {
 
   if (inputSectionClass.includes('personal')) {
     stateCopy[subSection] = input;
-    stateCopy.section = `personal-${sectionNumber}`
+    stateCopy.section = `personal`
   } else if (inputSectionClass.includes('experience')) {
     stateCopy[subSection] = input;
     stateCopy.section = `experience-${sectionNumber}`;

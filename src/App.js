@@ -14,16 +14,46 @@ function App() {
   const [inputData, setInputData] = React.useState(cvInfo);
 
   function updateCvInfo(data) {
-    console.log(data)
+    const section = data.section;
+    const prevDataCopy = { ...inputData };
+
+    if (section === 'personal') {
+      prevDataCopy.personalInfo = data;
+    } else if (section?.includes('experience')) {
+      prevDataCopy.experience[section] = data;
+    } else if (section?.includes('education')) {
+      prevDataCopy.education[section] = data;
+    }
+
+    setInputData(prevDataCopy);
+  }
+
+  function removeDeletedSectionsData(section, title) {
+    const prevDataCopy = { ...inputData }
+    const propToDelete = `${title}-${section}`
+
+    delete prevDataCopy[title][propToDelete];
+    setInputData(prevDataCopy)
   }
 
   return (
     <div className='App'>
-      <div className='title'>CV CREATOR</div>
+      <h1>CV CREATOR</h1>
       <div className='sections-body'>
-        <PersonalInfoSection updateCvInfo={updateCvInfo} />
-        <ExperienceSections updateCvInfo={updateCvInfo} />
-        <EducationSections updateCvInfo={updateCvInfo} />
+        <h2>Personal Information</h2>
+        <PersonalInfoSection
+          updateCvInfo={updateCvInfo}
+        />
+        <h2>Experience</h2>
+        <ExperienceSections
+          updateCvInfo={updateCvInfo}
+          removeDeletedSectionsData={removeDeletedSectionsData}
+        />
+        <h2>Education</h2>
+        <EducationSections
+          updateCvInfo={updateCvInfo}
+          removeDeletedSectionsData={removeDeletedSectionsData}
+        />
       </div>
       <Cv userInput={inputData} />
     </div>
