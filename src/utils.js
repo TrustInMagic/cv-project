@@ -1,3 +1,5 @@
+import cvInfoExample from './example';
+
 function parseInputToValidVariableName(input) {
   const lowerCase = input.toLowerCase();
   const arrFromString = [...lowerCase];
@@ -27,22 +29,58 @@ function handleInputData(event, state, setState) {
   let stateCopy = { ...state };
   const subSection = inputSubSection;
 
+  // parsing the input data in the desired format
   if (inputSectionClass.includes('personal')) {
     stateCopy[subSection] = input;
     stateCopy.section = `personal`;
   } else if (inputSectionClass.includes('experience')) {
     const sectionId = `experience-${sectionNumber}`;
     stateCopy[sectionId] = stateCopy[sectionId] ? stateCopy[sectionId] : {};
-    stateCopy[`experience-${sectionNumber}`][subSection] = input;
-    stateCopy[`experience-${sectionNumber}`].section = `experience-${sectionNumber}`
+    stateCopy[sectionId][subSection] = input;
+    stateCopy[sectionId].section = sectionId;
   } else if (inputSectionClass.includes('education')) {
     const sectionId = `education-${sectionNumber}`;
     stateCopy[sectionId] = stateCopy[sectionId] ? stateCopy[sectionId] : {};
-    stateCopy[`education-${sectionNumber}`][subSection] = input;
-    stateCopy[`education-${sectionNumber}`].section = `education-${sectionNumber}`
+    stateCopy[sectionId][subSection] = input;
+    stateCopy[sectionId].section = sectionId;
   }
 
   setState(stateCopy);
 }
 
-export { parseInputToValidVariableName, handleInputData };
+function autocompleteLoadExampleInputs(section, number) {
+  if (section === 'experience') {
+    switch (number) {
+      case 1:
+        return cvInfoExample.experience[1];
+      case 2:
+        return cvInfoExample.experience[2];
+      case 3:
+        return cvInfoExample.experience[3];
+      case 4:
+        return cvInfoExample.experience[4];
+      default:
+        return;
+    }
+  } else if (section === 'education') {
+    switch (number) {
+      case 1:
+        return cvInfoExample.education[1];
+      case 2:
+        return cvInfoExample.education[2];
+      case 3:
+        return cvInfoExample.education[3];
+      default:
+        return;
+    }
+  } else if (section === 'personal') {
+    return cvInfoExample.personalInfo
+  }
+
+}
+
+export {
+  parseInputToValidVariableName,
+  handleInputData,
+  autocompleteLoadExampleInputs,
+};
