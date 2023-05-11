@@ -24,16 +24,20 @@ function handleInputData(event, state, setState) {
   const sectionNumber = inputField.getAttribute('data-number')
 
   const input = event.target.value;
-  const stateCopy = { ...state };
+  let stateCopy = { ...state };
   const subSection = inputSubSection;
 
   if (inputSectionClass.includes('personal')) {
     stateCopy[subSection] = input;
     stateCopy.section = `personal`
   } else if (inputSectionClass.includes('experience')) {
+
+    console.log(stateCopy)
+    
     stateCopy[subSection] = input;
     stateCopy.section = `experience-${sectionNumber}`;
   } else if (inputSectionClass.includes('education')) {
+
     stateCopy[subSection] = input;
     stateCopy.section = `education-${sectionNumber}`;
   }

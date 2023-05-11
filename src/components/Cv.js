@@ -1,3 +1,7 @@
+import CvExpSection from './CvExpSection';
+import CvEduSection from './CvEduSection';
+import EducationSections from './EducationSections';
+
 function Cv({ userInput }) {
   const {
     firstName,
@@ -33,9 +37,17 @@ function Cv({ userInput }) {
           <h3>Description</h3>
           <div className='description'>{description}</div>
           <h3>Experience</h3>
-          <div className='experience'></div>
+          <div className='experience'>
+            {experienceSections.map((section) => (
+              <CvExpSection section={section} key={section.section} />
+            ))}
+          </div>
           <h3>Education</h3>
-          <div className='education'></div>
+          <div className='education'>
+            {educationSections.map((section) => (
+              <CvEduSection section={section} key={section.section} />
+            ))}
+          </div>
         </div>
         <div className='personal'></div>
       </div>

@@ -1,16 +1,17 @@
 import Section from './Section';
 import { handleInputData } from '../utils';
 import React from 'react';
+import { v4 as uuid } from 'uuid';
 
 function EducationSections({ updateCvInfo, removeDeletedSectionsData }) {
   const education = {};
   const title = 'education';
 
-  const [sections, setSections] = React.useState([1]);
+  const [sections, setSections] = React.useState([uuid()]);
   const [inputData, setInputData] = React.useState(education);
 
   function addSection() {
-    const nextEl = sections.length + 1;
+    const nextEl = uuid();
     const sectionsCopy = [...sections];
     sectionsCopy.push(nextEl);
     setSections(sectionsCopy);
@@ -18,7 +19,7 @@ function EducationSections({ updateCvInfo, removeDeletedSectionsData }) {
 
   function deleteSection(event) {
     const sectionToRemove = event.target.getAttribute('data-number');
-    const indexToRemove = sections.indexOf(Number(sectionToRemove));
+    const indexToRemove = sections.indexOf(sectionToRemove);
     const sectionsCopy = [...sections];
     sectionsCopy.splice(indexToRemove, 1);
     setSections(sectionsCopy);
@@ -26,13 +27,14 @@ function EducationSections({ updateCvInfo, removeDeletedSectionsData }) {
     removeDeletedSectionsData(sectionToRemove, title);
   }
 
-  React.useEffect(() => updateCvInfo(inputData), [inputData, sections]);
+  React.useEffect(() => updateCvInfo(inputData), [inputData]);
 
   return (
-    <div className=''>
+    <div className='education-sections'>
       {sections.map((number) => {
         return (
           <Section
+            className={`section-${number}`}
             key={number}
             number={number}
             title='Education'

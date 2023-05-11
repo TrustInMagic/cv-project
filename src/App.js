@@ -14,26 +14,28 @@ function App() {
   const [inputData, setInputData] = React.useState(cvInfo);
 
   function updateCvInfo(data) {
+
     const section = data.section;
     const prevDataCopy = { ...inputData };
 
-    if (section === 'personal') {
+    if (section && section === 'personal') {
       prevDataCopy.personalInfo = data;
-    } else if (section?.includes('experience')) {
+    } else if (section && section.includes('experience')) {
       prevDataCopy.experience[section] = data;
-    } else if (section?.includes('education')) {
+    } else if (section && section.includes('education')) {
       prevDataCopy.education[section] = data;
     }
 
     setInputData(prevDataCopy);
   }
 
-  function removeDeletedSectionsData(section, title) {
-    const prevDataCopy = { ...inputData }
-    const propToDelete = `${title}-${section}`
+  function removeDeletedSectionsData(sectionNumber, title) {
+    const prevDataCopy = { ...inputData };
+    const propToDelete = `${title}-${sectionNumber}`;
 
     delete prevDataCopy[title][propToDelete];
-    setInputData(prevDataCopy)
+
+    setInputData(prevDataCopy);
   }
 
   return (
