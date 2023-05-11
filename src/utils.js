@@ -20,8 +20,8 @@ function handleInputData(event, state, setState) {
   const inputSubSection = parseInputToValidVariableName(
     event.target.placeholder
   );
-  const inputField = event.target
-  const sectionNumber = inputField.getAttribute('data-number')
+  const inputField = event.target;
+  const sectionNumber = inputField.getAttribute('data-number');
 
   const input = event.target.value;
   let stateCopy = { ...state };
@@ -29,17 +29,17 @@ function handleInputData(event, state, setState) {
 
   if (inputSectionClass.includes('personal')) {
     stateCopy[subSection] = input;
-    stateCopy.section = `personal`
+    stateCopy.section = `personal`;
   } else if (inputSectionClass.includes('experience')) {
-
-    console.log(stateCopy)
-    
-    stateCopy[subSection] = input;
-    stateCopy.section = `experience-${sectionNumber}`;
+    const sectionId = `experience-${sectionNumber}`;
+    stateCopy[sectionId] = stateCopy[sectionId] ? stateCopy[sectionId] : {};
+    stateCopy[`experience-${sectionNumber}`][subSection] = input;
+    stateCopy[`experience-${sectionNumber}`].section = `experience-${sectionNumber}`
   } else if (inputSectionClass.includes('education')) {
-
-    stateCopy[subSection] = input;
-    stateCopy.section = `education-${sectionNumber}`;
+    const sectionId = `education-${sectionNumber}`;
+    stateCopy[sectionId] = stateCopy[sectionId] ? stateCopy[sectionId] : {};
+    stateCopy[`education-${sectionNumber}`][subSection] = input;
+    stateCopy[`education-${sectionNumber}`].section = `education-${sectionNumber}`
   }
 
   setState(stateCopy);

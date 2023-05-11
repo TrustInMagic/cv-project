@@ -7,10 +7,7 @@ function PersonalInfoSection({ updateCvInfo }) {
 
   const [inputData, setInputData] = React.useState(personalInfo);
 
-  React.useEffect(
-    () => updateCvInfo(inputData),
-    [inputData]
-  );
+  React.useEffect(() => updateCvInfo(inputData), [inputData]);
 
   return (
     <Section

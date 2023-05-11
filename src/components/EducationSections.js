@@ -3,7 +3,12 @@ import { handleInputData } from '../utils';
 import React from 'react';
 import { v4 as uuid } from 'uuid';
 
-function EducationSections({ updateCvInfo, removeDeletedSectionsData }) {
+function EducationSections({
+  updateCvInfo,
+  removeDeletedSectionsData,
+  resetFlag,
+  setResetFlag,
+}) {
   const education = {};
   const title = 'education';
 
@@ -28,6 +33,12 @@ function EducationSections({ updateCvInfo, removeDeletedSectionsData }) {
   }
 
   React.useEffect(() => updateCvInfo(inputData), [inputData]);
+  React.useEffect(() => {
+    if (resetFlag) {
+      setSections([uuid()]);
+      setResetFlag(false);
+    }
+  }, [resetFlag]);
 
   return (
     <div className='education-sections'>

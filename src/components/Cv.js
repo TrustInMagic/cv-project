@@ -1,6 +1,5 @@
 import CvExpSection from './CvExpSection';
 import CvEduSection from './CvEduSection';
-import EducationSections from './EducationSections';
 
 function Cv({ userInput }) {
   const {

@@ -1,7 +1,7 @@
 function Section(props) {
   const { title, inputFields, unique, handleInputData, deleteSection, number } =
     props;
-  
+
   function buildInputs(field) {
     if (field === 'Photo') {
       return (

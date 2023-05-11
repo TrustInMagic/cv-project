@@ -3,7 +3,12 @@ import React from 'react';
 import { handleInputData } from '../utils';
 import { v4 as uuid } from 'uuid';
 
-function ExperienceSections({ updateCvInfo, removeDeletedSectionsData }) {
+function ExperienceSections({
+  updateCvInfo,
+  removeDeletedSectionsData,
+  resetFlag,
+  setResetFlag
+}) {
   const experience = {};
   const title = 'experience';
 
@@ -11,7 +16,7 @@ function ExperienceSections({ updateCvInfo, removeDeletedSectionsData }) {
   const [inputData, setInputData] = React.useState(experience);
 
   function addSection() {
-    const nextEl = uuid()
+    const nextEl = uuid();
     const sectionsCopy = [...sections];
     sectionsCopy.push(nextEl);
     setSections(sectionsCopy);
@@ -28,6 +33,12 @@ function ExperienceSections({ updateCvInfo, removeDeletedSectionsData }) {
   }
 
   React.useEffect(() => updateCvInfo(inputData), [inputData]);
+  React.useEffect(() => {
+    if (resetFlag) {
+      setSections([uuid()]);
+      setResetFlag(false)
+    }
+  }, [resetFlag]);
 
   return (
     <div className='experience-sections'>

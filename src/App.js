@@ -12,18 +12,19 @@ function App() {
   };
 
   const [inputData, setInputData] = React.useState(cvInfo);
+  const [resetFlag, setResetFlag] = React.useState(false);
 
   function updateCvInfo(data) {
-
-    const section = data.section;
     const prevDataCopy = { ...inputData };
 
-    if (section && section === 'personal') {
-      prevDataCopy.personalInfo = data;
-    } else if (section && section.includes('experience')) {
-      prevDataCopy.experience[section] = data;
-    } else if (section && section.includes('education')) {
-      prevDataCopy.education[section] = data;
+    for (let key in data) {
+      if (key.includes('experience')) {
+        prevDataCopy.experience[key] = data[key];
+      } else if (key.includes('education')) {
+        prevDataCopy.education[key] = data[key];
+      } else if (data.section === 'personal') {
+        prevDataCopy.personalInfo = data;
+      }
     }
 
     setInputData(prevDataCopy);
@@ -38,24 +39,46 @@ function App() {
     setInputData(prevDataCopy);
   }
 
+  function generatePdf() {}
+
+  function loadExample() {}
+
+  function reset() {
+    setResetFlag(true);
+    setInputData(cvInfo);
+    const inputFields = document.querySelectorAll('input');
+    inputFields.forEach((field) => (field.value = ''));
+  }
+
   return (
     <div className='App'>
       <h1>CV CREATOR</h1>
       <div className='sections-body'>
         <h2>Personal Information</h2>
-        <PersonalInfoSection
-          updateCvInfo={updateCvInfo}
-        />
+        <PersonalInfoSection updateCvInfo={updateCvInfo} />
         <h2>Experience</h2>
         <ExperienceSections
           updateCvInfo={updateCvInfo}
           removeDeletedSectionsData={removeDeletedSectionsData}
+          resetFlag={resetFlag}
+          setResetFlag={setResetFlag}
         />
         <h2>Education</h2>
         <EducationSections
           updateCvInfo={updateCvInfo}
           removeDeletedSectionsData={removeDeletedSectionsData}
+          resetFlag={resetFlag}
+          setResetFlag={setResetFlag}
         />
+        <button className='pdf-button' onClick={generatePdf}>
+          Generate PDF
+        </button>
+        <button className='example-button' onClick={loadExample}>
+          Load Example
+        </button>
+        <button className='reset-button' onClick={reset}>
+          Reset
+        </button>
       </div>
       <Cv userInput={inputData} />
     </div>
