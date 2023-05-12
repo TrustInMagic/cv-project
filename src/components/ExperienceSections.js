@@ -2,17 +2,8 @@ import Section from './Section';
 import React from 'react';
 import { handleInputData } from '../utils';
 import { v4 as uuid } from 'uuid';
-import { autocompleteLoadExampleInputs } from '../utils';
 
-function ExperienceSections({
-  updateCvInfo,
-  removeDeletedSectionsData,
-  resetFlag,
-  setResetFlag,
-  loadExampleFlag,
-  setLoadExampleFlag
-}) {
-  
+function ExperienceSections({ updateCvInfo, removeDeletedSectionsData }) {
   const title = 'experience';
   const [sections, setSections] = React.useState([uuid()]);
   const [inputData, setInputData] = React.useState({});
@@ -40,26 +31,10 @@ function ExperienceSections({
   }
 
   React.useEffect(() => updateCvInfo(inputData), [inputData]);
-  // resetting the fields if reset button is pressed
-  React.useEffect(() => {
-    if (resetFlag) {
-      setSections([uuid()]);
-      setResetFlag(false);
-      setInputData({});
-    }
-  }, [resetFlag]);
-  // in case Load Example button is pressed, load the example CV
-  React.useEffect(() => {
-    if (loadExampleFlag) {
-      setSections([1, 2, 3, 4]);
-      setLoadExampleFlag(false)
-    }
-  }, [loadExampleFlag]);
 
   return (
     <div className='experience-sections'>
       {sections.map((number) => {
-        const autocomplete = autocompleteLoadExampleInputs(title, number);
         return (
           <Section
             className={`section-${number}`}
@@ -69,7 +44,6 @@ function ExperienceSections({
             handleInputData={(e) => handleInputData(e, inputData, setInputData)}
             inputFields={['Position', 'Company', 'City', 'From', 'To']}
             deleteSection={deleteSection}
-            autocomplete={autocomplete}
           />
         );
       })}

@@ -3,7 +3,6 @@ import Cv from './components/Cv';
 import ExperienceSections from './components/ExperienceSections';
 import PersonalInfoSection from './components/PersonalInfoSection';
 import EducationSections from './components/EducationSections';
-import cvInfoExample from './example';
 
 function App() {
   const cvInfo = {
@@ -13,8 +12,6 @@ function App() {
   };
 
   const [inputData, setInputData] = React.useState(cvInfo);
-  const [resetFlag, setResetFlag] = React.useState(false);
-  const [loadExampleFlag, setLoadExampleFlag] = React.useState(false);
 
   function updateCvInfo(data) {
     const prevDataCopy = { ...inputData };
@@ -43,47 +40,25 @@ function App() {
 
   function generatePdf() {}
 
-  function loadExample() {
-    setLoadExampleFlag(true);
-    setInputData(cvInfoExample);
-  }
+  function loadExample() {}
 
-  function reset() {
-    setResetFlag(true);
-    setInputData(cvInfo);
-    const inputFields = document.querySelectorAll('input');
-    inputFields.forEach((field) => (field.value = ''));
-  }
+  function reset() {}
 
   return (
     <div className='App'>
       <h1>CV CREATOR</h1>
       <div className='sections-body'>
         <h2>Personal Information</h2>
-        <PersonalInfoSection
-          updateCvInfo={updateCvInfo}
-          resetFlag={resetFlag}
-          setResetFlag={setResetFlag}
-          loadExampleFlag={loadExampleFlag}
-          setLoadExampleFlag={setLoadExampleFlag}
-        />
+        <PersonalInfoSection updateCvInfo={updateCvInfo} />
         <h2>Experience</h2>
         <ExperienceSections
           updateCvInfo={updateCvInfo}
           removeDeletedSectionsData={removeDeletedSectionsData}
-          resetFlag={resetFlag}
-          setResetFlag={setResetFlag}
-          loadExampleFlag={loadExampleFlag}
-          setLoadExampleFlag={setLoadExampleFlag}
         />
         <h2>Education</h2>
         <EducationSections
           updateCvInfo={updateCvInfo}
           removeDeletedSectionsData={removeDeletedSectionsData}
-          resetFlag={resetFlag}
-          setResetFlag={setResetFlag}
-          loadExampleFlag={loadExampleFlag}
-          setLoadExampleFlag={setLoadExampleFlag}
         />
         <button className='pdf-button' onClick={generatePdf}>
           Generate PDF

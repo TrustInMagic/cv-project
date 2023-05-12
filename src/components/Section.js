@@ -1,15 +1,6 @@
-import { buildAutocompleteInputs } from '../example';
-
 function Section(props) {
-  const {
-    title,
-    inputFields,
-    unique,
-    handleInputData,
-    deleteSection,
-    number,
-    autocomplete,
-  } = props;
+  const { title, inputFields, unique, handleInputData, deleteSection, number } =
+    props;
 
   function buildInputs(field) {
     if (field === 'Photo') {
@@ -35,7 +26,6 @@ function Section(props) {
           onInput={handleInputData}
           className={`${title} input`}
           data-number={number}
-          defaultValue={buildAutocompleteInputs(field, autocomplete)}
         />
       );
     }
