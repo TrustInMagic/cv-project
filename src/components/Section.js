@@ -1,6 +1,15 @@
 function Section(props) {
-  const { title, inputFields, unique, handleInputData, deleteSection, number } =
-    props;
+  const {
+    title,
+    inputFields,
+    unique,
+    handleInputData,
+    deleteSection,
+    number,
+    autocomplete,
+  } = props;
+
+  if (autocomplete) console.log(autocomplete);
 
   function buildInputs(field) {
     if (field === 'Photo') {

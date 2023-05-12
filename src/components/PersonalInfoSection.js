@@ -2,7 +2,7 @@ import Section from './Section';
 import { handleInputData } from '../utils';
 import React from 'react';
 
-function PersonalInfoSection({ updateCvInfo }) {
+function PersonalInfoSection({ updateCvInfo, autocomplete }) {
   const title = 'personal';
   const [inputData, setInputData] = React.useState({});
 
@@ -13,6 +13,7 @@ function PersonalInfoSection({ updateCvInfo }) {
       title='Personal Information'
       unique={true}
       handleInputData={(e) => handleInputData(e, inputData, setInputData)}
+      autocomplete={autocomplete}
       inputFields={[
         'First name',
         'Last name',

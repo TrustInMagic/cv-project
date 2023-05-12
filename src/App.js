@@ -3,6 +3,7 @@ import Cv from './components/Cv';
 import ExperienceSections from './components/ExperienceSections';
 import PersonalInfoSection from './components/PersonalInfoSection';
 import EducationSections from './components/EducationSections';
+import cvInfoExample from './example';
 
 function App() {
   const cvInfo = {
@@ -40,7 +41,10 @@ function App() {
 
   function generatePdf() {}
 
-  function loadExample() {}
+  function loadExample() {
+    const exampleInfo = { ...cvInfoExample };
+    setInputData(exampleInfo)
+  }
 
   function reset() {}
 
@@ -49,7 +53,10 @@ function App() {
       <h1>CV CREATOR</h1>
       <div className='sections-body'>
         <h2>Personal Information</h2>
-        <PersonalInfoSection updateCvInfo={updateCvInfo} />
+        <PersonalInfoSection
+          updateCvInfo={updateCvInfo}
+          autocomplete={inputData.personalInfo}
+        />
         <h2>Experience</h2>
         <ExperienceSections
           updateCvInfo={updateCvInfo}
@@ -70,7 +77,7 @@ function App() {
           Reset
         </button>
       </div>
-      <Cv userInput={inputData} />
+      {/* <Cv userInput={inputData} /> */}
     </div>
   );
 }

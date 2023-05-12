@@ -9,3 +9,5 @@ const cvInfoExample = {
     1: { universityName: 'cacat', from: 2000 },
   },
 };
+
+export default cvInfoExample
