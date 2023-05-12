@@ -46,7 +46,9 @@ function App() {
     setInputData(exampleInfo)
   }
 
-  function reset() {}
+  function reset() {
+    setInputData(cvInfo)
+  }
 
   return (
     <div className='App'>
@@ -61,11 +63,13 @@ function App() {
         <ExperienceSections
           updateCvInfo={updateCvInfo}
           removeDeletedSectionsData={removeDeletedSectionsData}
+          autocomplete={inputData.experience}
         />
         <h2>Education</h2>
         <EducationSections
           updateCvInfo={updateCvInfo}
           removeDeletedSectionsData={removeDeletedSectionsData}
+          autocomplete={inputData.education}
         />
         <button className='pdf-button' onClick={generatePdf}>
           Generate PDF

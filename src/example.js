@@ -7,6 +7,7 @@ const cvInfoExample = {
   },
   education: {
     1: { universityName: 'cacat', from: 2000 },
+    2: { universityName: 'cacat', from: 2000 },
   },
 };
 

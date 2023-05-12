@@ -3,7 +3,11 @@ import { handleInputData } from '../utils';
 import React from 'react';
 import { v4 as uuid } from 'uuid';
 
-function EducationSections({ updateCvInfo, removeDeletedSectionsData }) {
+function EducationSections({
+  updateCvInfo,
+  removeDeletedSectionsData,
+  autocomplete,
+}) {
   const title = 'education';
   const [sections, setSections] = React.useState([uuid()]);
   const [inputData, setInputData] = React.useState({});
@@ -32,6 +36,14 @@ function EducationSections({ updateCvInfo, removeDeletedSectionsData }) {
 
   React.useEffect(() => updateCvInfo(inputData), [inputData]);
 
+  React.useEffect(() => {
+    if (Object.keys(autocomplete).length === 0) {
+      setSections([uuid()]);
+    } else if (Object.keys(autocomplete).length > 0) {
+      setSections([...Object.keys(autocomplete)]);
+    }
+  }, [autocomplete]);
+
   return (
     <div className='education-sections'>
       {sections.map((number) => {
@@ -51,6 +63,7 @@ function EducationSections({ updateCvInfo, removeDeletedSectionsData }) {
               'To',
             ]}
             deleteSection={deleteSection}
+            autocomplete={autocomplete}
           />
         );
       })}

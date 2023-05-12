@@ -3,7 +3,11 @@ import React from 'react';
 import { handleInputData } from '../utils';
 import { v4 as uuid } from 'uuid';
 
-function ExperienceSections({ updateCvInfo, removeDeletedSectionsData }) {
+function ExperienceSections({
+  updateCvInfo,
+  removeDeletedSectionsData,
+  autocomplete,
+}) {
   const title = 'experience';
   const [sections, setSections] = React.useState([uuid()]);
   const [inputData, setInputData] = React.useState({});
@@ -32,6 +36,14 @@ function ExperienceSections({ updateCvInfo, removeDeletedSectionsData }) {
 
   React.useEffect(() => updateCvInfo(inputData), [inputData]);
 
+  React.useEffect(() => {
+    if (Object.keys(autocomplete).length === 0) {
+      setSections([uuid()]);
+    } else if (Object.keys(autocomplete).length > 0) {
+      setSections([...Object.keys(autocomplete)]);
+    }
+  }, [autocomplete]);
+
   return (
     <div className='experience-sections'>
       {sections.map((number) => {
@@ -44,6 +56,7 @@ function ExperienceSections({ updateCvInfo, removeDeletedSectionsData }) {
             handleInputData={(e) => handleInputData(e, inputData, setInputData)}
             inputFields={['Position', 'Company', 'City', 'From', 'To']}
             deleteSection={deleteSection}
+            autocomplete={autocomplete}
           />
         );
       })}

@@ -1,3 +1,5 @@
+import { parseInputToValidVariableName } from '../utils';
+
 function Section(props) {
   const {
     title,
@@ -9,7 +11,15 @@ function Section(props) {
     autocomplete,
   } = props;
 
-  if (autocomplete) console.log(autocomplete);
+  function autocompletePersonal(field) {
+    const autocompleteField = parseInputToValidVariableName(field);
+    return autocomplete[autocompleteField] ?? '';
+  }
+
+  function autocompleteComplex(field, number) {
+    const autocompleteField = parseInputToValidVariableName(field);
+    return autocomplete[number]?.[autocompleteField]
+  }
 
   function buildInputs(field) {
     if (field === 'Photo') {
@@ -35,6 +45,11 @@ function Section(props) {
           onInput={handleInputData}
           className={`${title} input`}
           data-number={number}
+          defaultValue={
+            title === 'Personal'
+              ? autocompletePersonal(field)
+              : autocompleteComplex(field, number)
+          }
         />
       );
     }
