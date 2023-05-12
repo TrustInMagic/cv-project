@@ -25,6 +25,7 @@ function Cv({ userInput }) {
     educationSections.push(userInput.education[key]);
   }
 
+
   return (
     <div className='cv'>
       <div className='header'>

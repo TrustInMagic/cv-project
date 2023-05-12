@@ -34,11 +34,8 @@ function App() {
     const prevDataCopy = { ...inputData };
     const propToDelete = `${title}-${sectionNumber}`;
 
-    console.log(prevDataCopy)
-
     delete prevDataCopy[title][propToDelete];
-
-    console.log(prevDataCopy);
+    delete prevDataCopy[title][sectionNumber];
 
     setInputData(prevDataCopy);
   }
