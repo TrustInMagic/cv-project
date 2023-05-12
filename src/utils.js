@@ -29,12 +29,16 @@ function handleInputData(event, state, setState) {
     stateCopy[subSection] = input;
     stateCopy.section = `personal`;
   } else if (inputSectionClass.includes('experience')) {
-    const sectionId = `experience-${sectionNumber}`;
+    const sectionId = sectionNumber.includes('experience')
+      ? sectionNumber
+      : `experience-${sectionNumber}`;
     stateCopy[sectionId] = stateCopy[sectionId] ? stateCopy[sectionId] : {};
     stateCopy[sectionId][subSection] = input;
     stateCopy[sectionId].section = sectionId;
   } else if (inputSectionClass.includes('education')) {
-    const sectionId = `education-${sectionNumber}`;
+    const sectionId = sectionNumber.includes('education')
+      ? sectionNumber
+      : `education-${sectionNumber}`;
     stateCopy[sectionId] = stateCopy[sectionId] ? stateCopy[sectionId] : {};
     stateCopy[sectionId][subSection] = input;
     stateCopy[sectionId].section = sectionId;
@@ -42,7 +46,5 @@ function handleInputData(event, state, setState) {
 
   setState(stateCopy);
 }
-
-
 
 export { parseInputToValidVariableName, handleInputData };

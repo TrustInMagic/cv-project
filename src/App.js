@@ -34,7 +34,11 @@ function App() {
     const prevDataCopy = { ...inputData };
     const propToDelete = `${title}-${sectionNumber}`;
 
+    console.log(prevDataCopy)
+
     delete prevDataCopy[title][propToDelete];
+
+    console.log(prevDataCopy);
 
     setInputData(prevDataCopy);
   }
@@ -81,7 +85,7 @@ function App() {
           Reset
         </button>
       </div>
-      {/* <Cv userInput={inputData} /> */}
+      <Cv userInput={inputData} />
     </div>
   );
 }

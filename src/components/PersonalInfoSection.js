@@ -7,6 +7,14 @@ function PersonalInfoSection({ updateCvInfo, autocomplete }) {
 
   React.useEffect(() => updateCvInfo(inputData), [inputData]);
 
+  React.useEffect(() => {
+    if (Object.keys(autocomplete).length === 0) {
+      setInputData({});
+    } else if (Object.keys(autocomplete).length > 0) {
+      setInputData(autocomplete)
+    }
+  }, [autocomplete]);
+
   return (
     <Section
       title='Personal'

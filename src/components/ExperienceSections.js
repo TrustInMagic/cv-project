@@ -39,8 +39,10 @@ function ExperienceSections({
   React.useEffect(() => {
     if (Object.keys(autocomplete).length === 0) {
       setSections([uuid()]);
+      setInputData({})
     } else if (Object.keys(autocomplete).length > 0) {
       setSections([...Object.keys(autocomplete)]);
+      setInputData(autocomplete)
     }
   }, [autocomplete]);
 

@@ -16,6 +16,8 @@ function Cv({ userInput }) {
   const experienceSections = [];
   const educationSections = [];
 
+  
+
   for (let key in userInput.experience) {
     experienceSections.push(userInput.experience[key]);
   }
