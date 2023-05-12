@@ -19,7 +19,7 @@ function handleInputData(event, state, setState) {
   const inputSectionClass = parseInputToValidVariableName(
     event.target.className
   );
-  const inputSubSection = parseInputToValidVariableName(
+  const subSection = parseInputToValidVariableName(
     event.target.placeholder
   );
   const inputField = event.target;
@@ -27,7 +27,6 @@ function handleInputData(event, state, setState) {
 
   const input = event.target.value;
   let stateCopy = { ...state };
-  const subSection = inputSubSection;
 
   // parsing the input data in the desired format
   if (inputSectionClass.includes('personal')) {
