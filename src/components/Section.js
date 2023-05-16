@@ -37,6 +37,22 @@ function Section(props) {
           />
         </div>
       );
+    } else if (field === 'Description') {
+      return (
+        <textarea
+          rows='4'
+          key={field}
+          placeholder={field}
+          onInput={handleInputData}
+          className={`${title} input`}
+          data-number={number}
+          defaultValue={
+            title === 'Personal'
+              ? autocompletePersonal(field)
+              : autocompleteComplex(field, number)
+          }
+        />
+      );
     } else {
       return (
         <input

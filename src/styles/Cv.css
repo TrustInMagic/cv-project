@@ -9,14 +9,15 @@
 
 .cv {
   margin: 50px 0px;
-  width: 90%;
+  width: 800px;
   height: 100vh;
   box-shadow: 2px 2px 10px;
+  color: var(--gray-font)
 }
 
 .cv-header {
   background-color: var(--cv-header);
-  height: 100px;
+  height: 120px;
   color: var(--font-color);
   padding: 15px;
   display: flex;
@@ -28,7 +29,7 @@
   margin-left: 15px;
   display: grid;
   grid-template-columns: 2.5fr 1fr;
-  height: calc(100% - 100px);
+  height: calc(100% - 120px);
 }
 
 .cv h3 {
@@ -43,19 +44,61 @@
   margin-top: 20px;
   grid-column: 1 / 2;
   padding-right: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
 }
 
-.description-container {
-}
+
 
 .description {
   color: var(--gray-font);
   font-style: italic;
 }
 
-.personal {
+.cv .personal {
   grid-column: 2 / 3;
   height: 100%;
   padding: 15px;
   background-color: var(--sections-color);
+}
+
+img {
+  height: 280px;
+  width: 200px;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.cv .personal {
+  display: flex;
+  gap: 20px;
+}
+
+.personal .details {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.personal-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.experience-section,
+.education-section {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  margin-bottom: 10px;
+}
+
+.cv .details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }

@@ -1,11 +1,11 @@
 function CvEduSection({ section }) {
   return (
     <div className='education-section'>
-      <div className='years'>
+      <div className='years bold'>
         {section.from} {section.to ? '-' : null} {section.to}
       </div>
       <div className='details'>
-        <div className='university'>
+        <div className='university bold'>
           {section.universityName}{section.city ? ', ' : null} {section.city}
         </div>
         <div className='degree'>

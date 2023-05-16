@@ -55,7 +55,24 @@ function Cv({ userInput }) {
             </div>
           </div>
         </div>
-        <div className='personal'></div>
+        <div className='personal'>
+          <img src={photo ?? './assets/person.png'} alt='' />
+          <h3>Personal Details</h3>
+          <div className='details'>
+            <div className='personal-container'>
+              <div className='bold'>Address</div>
+              <div>{address}</div>
+            </div>
+            <div className='personal-container'>
+              <div className='bold'>Phone Number</div>
+              <div>{phoneNumber}</div>
+            </div>
+            <div className='personal-container'>
+              <div className='bold'>Email</div>
+              <div>{email}</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
