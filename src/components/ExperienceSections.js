@@ -45,7 +45,7 @@ function ExperienceSections({
       setInputData(autocomplete)
     }
   }, [autocomplete]);
-
+  
   return (
     <div className='experience-sections'>
       {sections.map((number) => {

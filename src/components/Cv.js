@@ -1,5 +1,6 @@
 import CvExpSection from './CvExpSection';
 import CvEduSection from './CvEduSection';
+import '../styles/Cv.css';
 
 function Cv({ userInput }) {
   const {
@@ -16,8 +17,6 @@ function Cv({ userInput }) {
   const experienceSections = [];
   const educationSections = [];
 
-  
-
   for (let key in userInput.experience) {
     experienceSections.push(userInput.experience[key]);
   }
@@ -25,10 +24,9 @@ function Cv({ userInput }) {
     educationSections.push(userInput.education[key]);
   }
 
-
   return (
     <div className='cv'>
-      <div className='header'>
+      <div className='cv-header'>
         <h1>
           {firstName} {lastName}
         </h1>
@@ -36,19 +34,25 @@ function Cv({ userInput }) {
       </div>
       <div className='body'>
         <div className='main-area'>
-          <h3>Description</h3>
-          <div className='description'>{description}</div>
-          <h3>Experience</h3>
-          <div className='experience'>
-            {experienceSections.map((section) => (
-              <CvExpSection section={section} key={section.section} />
-            ))}
+          <div className='description-container'>
+            <h3>Description</h3>
+            <div className='description'>{description}</div>
           </div>
-          <h3>Education</h3>
-          <div className='education'>
-            {educationSections.map((section) => (
-              <CvEduSection section={section} key={section.section} />
-            ))}
+          <div className='experience-container'>
+            <h3>Experience</h3>
+            <div className='experience'>
+              {experienceSections.map((section) => (
+                <CvExpSection section={section} key={section.section} />
+              ))}
+            </div>
+          </div>
+          <div className='education-container'>
+            <h3>Education</h3>
+            <div className='education'>
+              {educationSections.map((section) => (
+                <CvEduSection section={section} key={section.section} />
+              ))}
+            </div>
           </div>
         </div>
         <div className='personal'></div>

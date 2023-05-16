@@ -1,0 +1,150 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --brand-color: #404040;
+  --font-color: #f1f5f9;
+  --body-color: #f5f5f4;
+  --sections-color: #e7e5e4;
+  --pdf-button: #22c55e;
+  --hover-pdf-button: #166534;
+  --example-button: #f97316;
+  --hover-example-button: #b45309;
+  --reset-button: #991b1b;
+  --hover-reset-button: #450a0a;
+  --hover-normal-button: #292524;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+body {
+  background-color: var(--body-color);
+}
+
+.header {
+  height: 100px;
+  background-color: var(--brand-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--font-color);
+  font-size: 1.5rem;
+  font-family: 'Courier New', Courier, monospace;
+  width: 100%;
+}
+
+.sections-body {
+  margin-top: 30px;
+  box-shadow: 2px 2px 10px;
+  background-color: var(--sections-color);
+  width: 90%;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.section:nth-child(2),
+.section:nth-child(3) {
+  margin-top: 25px;
+}
+
+.education-sections,
+.experience-sections {
+  width: 100%;
+}
+
+.personal,
+.experience,
+.education {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+h2 {
+  font-size: 1.3rem;
+  font-weight: 500;
+  align-self: baseline;
+}
+
+button,
+.experience-sections .buttons .education-sections .buttons {
+  width: 100%;
+  height: 40px;
+  background-color: var(--brand-color);
+  color: var(--font-color);
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 8px;
+  outline: none;
+  border: none;
+}
+
+.delete {
+  margin: 8px 0px;
+}
+
+.special-buttons {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+input {
+  width: 100%;
+  font-size: 100%;
+  font-family: inherit;
+  border: none;
+  height: 40px;
+  border-radius: 8px;
+  padding-left: 5px;
+  outline: none;
+}
+
+.pdf-button {
+  background-color: var(--pdf-button);
+}
+
+.pdf-button:hover {
+  background-color: var(--hover-pdf-button);
+}
+
+.example-button {
+  background-color: var(--example-button);
+}
+
+.example-button:hover {
+  background-color: var(--hover-example-button);
+}
+
+.reset-button {
+  background-color: var(--reset-button);
+}
+
+.reset-button:hover {
+  background-color: var(--hover-reset-button);
+}
+
+button:not(.special):hover {
+  background-color: var(--hover-normal-button);
+}

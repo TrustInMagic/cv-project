@@ -58,7 +58,7 @@ function Section(props) {
   function addButtons(title) {
     return (
       <button
-        className={`${title.toLowerCase()}-delete`}
+        className={`${title.toLowerCase()}-delete delete`}
         onClick={deleteSection}
         data-number={number}
       >
@@ -68,10 +68,8 @@ function Section(props) {
   }
 
   return (
-    <div className={title.toLowerCase()}>
-      <div className='field-container'>
-        {inputFields && inputFields.map((field) => buildInputs(field))}
-      </div>
+    <div className={`${title.toLowerCase()}`}>
+      {inputFields && inputFields.map((field) => buildInputs(field))}
       <div className='buttons'>{!unique ? addButtons(title) : null}</div>
     </div>
   );
