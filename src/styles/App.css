@@ -100,6 +100,10 @@ button,
   border: none;
 }
 
+.photo-input-container button {
+  width: 100px;
+}
+
 .delete {
   margin: 8px 0px;
 }
@@ -123,11 +127,6 @@ textarea {
   outline: none;
   resize: none;
 }
-
-.personal input:nth-child(8) {
-  height: 80px;
-}
-
 
 .pdf-button {
   background-color: var(--pdf-button);

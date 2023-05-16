@@ -1,4 +1,5 @@
 import { parseInputToValidVariableName } from '../utils';
+import React from 'react';
 
 function Section(props) {
   const {
@@ -21,19 +22,25 @@ function Section(props) {
     return autocomplete[number]?.[autocompleteField]
   }
 
+  const fileInputRef = React.useRef(null);
+
   function buildInputs(field) {
     if (field === 'Photo') {
       return (
         <div className='photo-input-container' key={field}>
-          <label htmlFor='photo-input'>Add Photo</label>
+          <button onClick={() => fileInputRef.current.click()}>
+            Add Photo
+          </button>
           <input
             type='file'
             accept='image/jpeg, image/png, image/jpg'
             onInput={handleInputData}
-            // style={{ display: 'none' }}
+            style={{ display: 'none' }}
             id='photo-input'
+            className={`${title} input`}
             placeholder='photo'
             data-number={number}
+            ref={fileInputRef}
           />
         </div>
       );

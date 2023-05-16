@@ -4,6 +4,8 @@ import ExperienceSections from './components/ExperienceSections';
 import PersonalInfoSection from './components/PersonalInfoSection';
 import EducationSections from './components/EducationSections';
 import cvInfoExample from './example';
+import { jsPDF } from 'jspdf';
+import html2canvas from 'html2canvas';
 import './styles/App.css';
 
 function App() {
@@ -41,7 +43,19 @@ function App() {
     setInputData(prevDataCopy);
   }
 
-  function generatePdf() {}
+  async function generatePdf() {
+    const download = document.querySelector('.cv')
+    const cvPdf = new jsPDF('1', 'pt');
+
+    await html2canvas(download, {
+      allowTaint: true,
+      useCORS: true,
+    }).then((canvas) => {
+      cvPdf.addImage(canvas.toDataURL("image/png"), 'PNG', 5, 5)
+    })
+
+    cvPdf.save("Cv.pdf")
+  }
 
   function loadExample() {
     const exampleInfo = { ...cvInfoExample };

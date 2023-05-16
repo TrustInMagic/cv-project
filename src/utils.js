@@ -26,7 +26,13 @@ function handleInputData(event, state, setState) {
 
   // parsing the input data in the desired format
   if (inputSectionClass.includes('personal')) {
-    stateCopy[subSection] = input;
+    if (subSection === 'photo') {
+      const file = event.target.files[0];
+      const imageUrl = URL.createObjectURL(file);
+      stateCopy[subSection] = imageUrl;
+    } else {
+      stateCopy[subSection] = input;
+    }
     stateCopy.section = `personal`;
   } else if (inputSectionClass.includes('experience')) {
     const sectionId = sectionNumber.includes('experience')

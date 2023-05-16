@@ -25,11 +25,11 @@ function PersonalInfoSection({ updateCvInfo, autocomplete }) {
         'First name',
         'Last name',
         'Title',
-        'Photo',
         'Address',
         'Phone number',
         'Email',
         'Description',
+        'Photo'
       ]}
     />
   );
