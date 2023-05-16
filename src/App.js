@@ -71,43 +71,45 @@ function App() {
       <div className='header'>
         <h1>CV CREATOR</h1>
       </div>
-      <div className='sections-body'>
-        <div className='section'>
-          <h2>Personal Information</h2>
-          <PersonalInfoSection
-            updateCvInfo={updateCvInfo}
-            autocomplete={inputData.personalInfo}
-          />
+      <div className="content">
+        <div className='sections-body'>
+          <div className='section'>
+            <h2>Personal Information</h2>
+            <PersonalInfoSection
+              updateCvInfo={updateCvInfo}
+              autocomplete={inputData.personalInfo}
+            />
+          </div>
+          <div className='section'>
+            <h2>Experience</h2>
+            <ExperienceSections
+              updateCvInfo={updateCvInfo}
+              removeDeletedSectionsData={removeDeletedSectionsData}
+              autocomplete={inputData.experience}
+            />
+          </div>
+          <div className='section'>
+            <h2>Education</h2>
+            <EducationSections
+              updateCvInfo={updateCvInfo}
+              removeDeletedSectionsData={removeDeletedSectionsData}
+              autocomplete={inputData.education}
+            />
+          </div>
+          <div className='special-buttons'>
+            <button className='pdf-button special' onClick={generatePdf}>
+              Generate PDF
+            </button>
+            <button className='example-button special' onClick={loadExample}>
+              Load Example
+            </button>
+            <button className='reset-button special' onClick={reset}>
+              Reset
+            </button>
+          </div>
         </div>
-        <div className='section'>
-          <h2>Experience</h2>
-          <ExperienceSections
-            updateCvInfo={updateCvInfo}
-            removeDeletedSectionsData={removeDeletedSectionsData}
-            autocomplete={inputData.experience}
-          />
-        </div>
-        <div className='section'>
-          <h2>Education</h2>
-          <EducationSections
-            updateCvInfo={updateCvInfo}
-            removeDeletedSectionsData={removeDeletedSectionsData}
-            autocomplete={inputData.education}
-          />
-        </div>
-        <div className='special-buttons'>
-          <button className='pdf-button special' onClick={generatePdf}>
-            Generate PDF
-          </button>
-          <button className='example-button special' onClick={loadExample}>
-            Load Example
-          </button>
-          <button className='reset-button special' onClick={reset}>
-            Reset
-          </button>
-        </div>
+        <Cv userInput={inputData} />
       </div>
-      <Cv userInput={inputData} />
     </div>
   );
 }

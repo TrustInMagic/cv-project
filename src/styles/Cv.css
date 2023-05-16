@@ -8,11 +8,13 @@
 }
 
 .cv {
-  margin: 50px 0px;
+  margin: 30px 0px;
   width: 800px;
   height: 100vh;
   box-shadow: 2px 2px 10px;
-  color: var(--gray-font)
+  color: var(--gray-font);
+  position: sticky;
+  top: 0;
 }
 
 .cv-header {
