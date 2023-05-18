@@ -34,15 +34,13 @@ function EducationSections({
     setInputData(inputDataCopy);
   }
 
-  React.useEffect(() => updateCvInfo(inputData), [inputData]);
-
   React.useEffect(() => {
     if (Object.keys(autocomplete).length === 0) {
       setSections([uuid()]);
-      setInputData({})
+      setInputData({});
     } else if (Object.keys(autocomplete).length > 0) {
       setSections([...Object.keys(autocomplete)]);
-      setInputData(autocomplete)
+      setInputData(autocomplete);
     }
   }, [autocomplete]);
 
@@ -55,7 +53,10 @@ function EducationSections({
             key={number}
             number={number}
             title='Education'
-            handleInputData={(e) => handleInputData(e, inputData, setInputData)}
+            handleInputData={(e) => {
+              handleInputData(e, inputData, setInputData);
+              updateCvInfo(inputData);
+            }}
             inputFields={[
               'University name',
               'City',

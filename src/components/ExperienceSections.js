@@ -34,18 +34,16 @@ function ExperienceSections({
     setInputData(inputDataCopy);
   }
 
-  React.useEffect(() => updateCvInfo(inputData), [inputData]);
-
   React.useEffect(() => {
     if (Object.keys(autocomplete).length === 0) {
       setSections([uuid()]);
-      setInputData({})
+      setInputData({});
     } else if (Object.keys(autocomplete).length > 0) {
       setSections([...Object.keys(autocomplete)]);
-      setInputData(autocomplete)
+      setInputData(autocomplete);
     }
   }, [autocomplete]);
-  
+
   return (
     <div className='experience-sections'>
       {sections.map((number) => {
@@ -55,7 +53,10 @@ function ExperienceSections({
             key={number}
             number={number}
             title='Experience'
-            handleInputData={(e) => handleInputData(e, inputData, setInputData)}
+            handleInputData={(e) => {
+              handleInputData(e, inputData, setInputData);
+              updateCvInfo(inputData);
+            }}
             inputFields={['Position', 'Company', 'City', 'From', 'To']}
             deleteSection={deleteSection}
             autocomplete={autocomplete}
